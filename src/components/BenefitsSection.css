@@ -1,0 +1,18 @@
+.benefits-section {
+    background-color: #f7f7f7;
+  }
+  
+  .benefit-card {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .benefit-card:hover {
+    transform: translateY(-10px);
+  }
+  
+  .cta a {
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+  }
+  

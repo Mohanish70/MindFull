@@ -1,0 +1,351 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f4f7fc;
+  color: #333;
+  line-height: 1.6;
+  font-size: 16px;
+  padding-top: 80px; /* For fixed navbar offset */
+}
+
+/* Navbar Styles */
+.navbar {
+  background-color: #2a2a2a;
+  padding: 1rem 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar .logo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.navbar .nav-links li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-links li a:hover {
+  color: #f39c12;
+}
+
+.navbar .auth-buttons .button {
+  padding: 0.8rem 1.5rem;
+  background-color: #f39c12;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.navbar .auth-buttons .button:hover {
+  background-color: #e67e22;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(135deg, #2c3e50, #4f6d7a);
+  color: #fff;
+  padding: 8rem 2rem; /* Increased padding for larger hero section */
+  text-align: center;
+  border-bottom: 5px solid #f39c12;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+
+.hero .get-started-btn {
+  background-color: #f39c12;
+  color: #fff;
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.hero .get-started-btn:hover {
+  background-color: #e67e22;
+  transform: scale(1.1);
+}
+
+/* About Section */
+.about {
+  background-color: #fff;
+  padding: 5rem 2rem;
+  text-align: center;
+  border-bottom: 5px solid #f4f7fc;
+}
+
+.about h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.about p {
+  font-size: 1.2rem;
+  color: #666;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Services Section */
+.services {
+  padding: 5rem 2rem;
+  background-color: #f4f7fc;
+}
+
+.services h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.services .service-card {
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 350px;
+  margin-bottom: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.services .service-card:hover {
+  transform: translateY(-10px);
+}
+
+.services .service-card img {
+  width: 100%;
+  height: auto;
+}
+
+.services .service-card h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 1rem;
+}
+
+.services .service-card p {
+  font-size: 1rem;
+  color: #666;
+  padding: 0 1rem 1.5rem;
+}
+
+.services .service-card a {
+  display: inline-block;
+  margin: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #f39c12;
+  color: #fff;
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: background-color 0.3s ease;
+}
+
+.services .service-card a:hover {
+  background-color: #e67e22;
+}
+
+/* Testimonials Section */
+.testimonials {
+  padding: 5rem 2rem;
+  background-color: #e0f7fa;
+}
+
+.testimonials h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.testimonials .testimonial-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 350px;
+  margin: 0 1rem 2rem 1rem;
+  transition: transform 0.3s ease;
+}
+
+.testimonials .testimonial-card:hover {
+  transform: translateY(-10px);
+}
+
+.testimonials .testimonial-card p {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.testimonials .testimonial-card .font-semibold {
+  font-size: 1.3rem;
+  margin-top: 1rem;
+}
+
+.testimonials .testimonial-card .text-gray-500 {
+  color: #777;
+  font-size: 1rem;
+}
+
+/* Contact Section */
+.contact {
+  padding: 5rem 2rem;
+  background-color: #fff;
+  text-align: center;
+  border-bottom: 5px solid #f4f7fc;
+}
+
+.contact h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.contact p {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.contact form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact form input,
+.contact form textarea {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+}
+
+.contact form textarea {
+  resize: vertical;
+}
+
+.contact form .send-btn {
+  background-color: #f39c12;
+  color: #fff;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.contact form .send-btn:hover {
+  background-color: #e67e22;
+  transform: scale(1.05);
+}
+
+/* Footer Styles */
+.footer {
+  background-color: #2a2a2a;
+  color: #fff;
+  padding: 2rem 2rem;
+  text-align: center;
+}
+
+.footer p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.footer .footer-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.footer .footer-links li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.footer .footer-links li a:hover {
+  color: #f39c12;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar .nav-links {
+    display: none;
+  }
+
+  .navbar .auth-buttons {
+    margin-left: auto;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .services .service-card {
+    max-width: 100%;
+  }
+
+  .testimonials .testimonial-card {
+    max-width: 100%;
+  }
+
+  .contact form {
+    width: 90%;
+  }
+
+  .footer .footer-links {
+    flex-direction: column;
+    align-items: center;
+  }
+}

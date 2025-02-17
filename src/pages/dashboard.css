@@ -1,0 +1,959 @@
+/* General Body & Font Settings */
+body {
+  font-family: 'Poppins', sans-serif; /* Font for entire page */
+  margin: 0;
+  padding: 0;
+  background-color: #F7F9FC; /* Light gray background */
+}
+
+/* General Container */
+.dashboard-container {
+  min-height: 100vh;
+  padding: 20px 0;
+}
+
+/* Dashboard Content */
+.dashboard-content {
+  background-color: #ffffff; /* White background for content */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Section */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+header .user-info {
+  display: flex;
+  align-items: center;
+}
+
+header .user-info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+header .logout-button {
+  background-color: #EF4444; /* Red button for logout */
+  padding: 10px 20px;
+  border-radius: 12px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+header .logout-button:hover {
+  background-color: #DC2626; /* Darker red on hover */
+}
+
+/* Headings */
+h1, h2, h3 {
+  font-family: 'Poppins', sans-serif;
+}
+
+h2, h3 {
+  font-weight: 600;
+  color: #2B2D42; /* Dark blue for headings */
+}
+
+p, .text-base {
+  color: #4A4A4A; /* Dark gray for text */
+  font-size: 1rem;
+}
+
+/* Card Styles (Meditation Sessions) */
+.meditation-card {
+  background-color: #F1F5F9;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.meditation-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.meditation-card img {
+  width: 100%;
+  height: 180px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-bottom: 16px;
+}
+
+.meditation-card h3 {
+  font-size: 1.25rem;
+  color: #3B82F6; /* Blue for title */
+  margin-bottom: 8px;
+}
+
+.meditation-card p {
+  font-size: 1rem;
+  color: #555555;
+  margin-bottom: 16px;
+}
+
+.meditation-card button {
+  background-color: #3B82F6; /* Blue button */
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.meditation-card button:hover {
+  background-color: #2563EB; /* Darker blue on hover */
+}
+
+/* Mood Survey Section */
+.mood-survey {
+  margin-bottom: 32px;
+}
+
+.mood-survey select {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #E5E7EB;
+  background-color: #F9FAFB;
+  color: #4B5563;
+  margin-top: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.mood-survey select:hover {
+  border-color: #3B82F6; /* Blue border on hover */
+}
+
+/* Section Styling */
+section {
+  margin-bottom: 40px;
+}
+
+section h2 {
+  font-size: 1.75rem;
+  margin-bottom: 16px;
+}
+
+section p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.section-content {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.section-content .cta-btn {
+  background-color: #FBBF24; /* Yellow for CTA button */
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: #1F2937;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.section-content .cta-btn:hover {
+  background-color: #EAB308; /* Darker yellow on hover */
+}
+
+/* Grid Layout for Meditation Cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+/* Meditation Progress */
+.meditation-progress {
+  background-color: #F3F4F6;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+}
+
+.meditation-progress p {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* Button Styling */
+button {
+  background-color: #3B82F6;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2563EB;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard-content {
+    padding: 20px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .meditation-card {
+    padding: 16px;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  header .logout-button {
+    margin-top: 12px;
+  }
+}
+
+/* Start Button Styling */
+.meditation-card .start-button {
+  background-color: #4A90E2; /* Soft blue for Start button */
+  color: white;
+  padding: 12px 30px;
+  font-size: 1.125rem;
+  font-weight: 500;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover Effect */
+.meditation-card .start-button:hover {
+  background-color: #2980B9;
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Focus Effect */
+.meditation-card .start-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(72, 125, 182, 0.5);
+}
+
+/* Header Title Styling */
+.dashboard-content h1 {
+  font-size: 2.5rem;
+  color: #2C3E50; /* Dark gray text for header */
+  font-weight: 600;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* User Info Section */
+.dashboard-content .flex {
+  display: flex;
+  align-items: center;
+}
+
+.dashboard-content img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #E2E8F0;
+}
+
+.dashboard-content .text-xl {
+  font-size: 1.25rem;
+  color: #2C3E50;
+}
+
+.dashboard-content .text-gray-600 {
+  color: #BDC3C7;
+}
+
+.dashboard-content .space-x-4 {
+  gap: 20px;
+}
+
+/* Meditation Challenges Section */
+.meditation-challenges {
+  background-color: #F4F6FA;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 40px;
+}
+
+.meditation-challenges h2 {
+  font-size: 1.875rem;
+  color: #2C3E50;
+  margin-bottom: 15px;
+}
+
+.meditation-challenges ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.meditation-challenges li {
+  font-size: 1.125rem;
+  color: #4A90E2;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+}
+
+.meditation-challenges li:hover {
+  color: #50E3C2; /* Light teal accent on hover */
+}
+
+/* Reminder Section */
+.reminder-container {
+  background-color: #F4F6FA;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 40px;
+
+}
+
+.reminder-container h2 {
+  font-size: 1.875rem;
+  color: #2C3E50;
+  margin-bottom: 15px;
+}
+
+.reminder-container .reminder-button {
+  background-color: #50E3C2; /* Light teal */
+  color: white;
+  padding: 12px 24px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reminder-container .reminder-button:hover {
+  background-color: #34B7A5;
+}
+
+/* Meditation History */
+.meditation-history {
+  background-color: #F4F6FA;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.meditation-history h2 {
+  font-size: 1.875rem;
+  color: #2C3E50;
+  margin-bottom: 15px;
+}
+
+.meditation-history ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.meditation-history li {
+  font-size: 1.125rem;
+  color: #BDC3C7;
+  margin-bottom: 10px;
+}
+
+/* Logout Button */
+.logout-button-container {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.logout-button-container button {
+  background-color: #E53E3E;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1.125rem;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button-container button:hover {
+  background-color: #C53030;
+}
+
+/* Footer Section */
+footer {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #BDC3C7;
+}
+
+footer a {
+  color: #50E3C2;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+/* General Body & Font Settings */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #F7F9FC; /* Light gray background */
+}
+
+/* General Container */
+.dashboard-container {
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Header Section */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 15px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+header .user-info {
+  display: flex;
+  align-items: center;
+}
+
+header .user-info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+header .logout-button {
+  background-color: #EF4444;
+  padding: 10px 20px;
+  border-radius: 12px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+header .logout-button:hover {
+  background-color: #DC2626;
+}
+
+/* Main Content Section */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Boxed Sections */
+.box {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+}
+
+.box h2 {
+  font-size: 1.75rem;
+  color: #2B2D42;
+  margin-bottom: 20px;
+}
+
+.box p {
+  color: #4A4A4A;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.box .btn {
+  background-color: #3B82F6;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.box .btn:hover {
+  background-color: #2563EB;
+}
+
+/* Mood Tracker Section */
+.mood-tracker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.mood-tracker select {
+  padding: 12px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #E5E7EB;
+  width: 200px;
+  margin-bottom: 10px;
+}
+
+.mood-tracker .btn {
+  background-color: #50E3C2;
+  padding: 12px 24px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.mood-tracker .btn:hover {
+  background-color: #34B7A5;
+  transform: translateY(-4px);
+}
+
+/* Meditation Challenge Section */
+.meditation-challenges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.meditation-card {
+  background-color: #F1F5F9;
+  border-radius: 10px;
+  padding: 20px;
+  width: 48%;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.meditation-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.meditation-card img {
+  width: 100%;
+  height: 180px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-bottom: 16px;
+}
+
+.meditation-card h3 {
+  font-size: 1.25rem;
+  color: #3B82F6;
+  margin-bottom: 8px;
+}
+
+.meditation-card button {
+  background-color: #3B82F6;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.meditation-card button:hover {
+  background-color: #2563EB;
+}
+
+/* Testimonials Section */
+.testimonials {
+  background-color: #F4F6FA;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 40px;
+}
+
+.testimonials h3 {
+  font-size: 1.75rem;
+  color: #2B2D42;
+  margin-bottom: 20px;
+}
+
+.testimonials .testimonial {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  color: #4A4A4A;
+}
+
+.testimonials .testimonial .user {
+  font-weight: bold;
+  color: #3B82F6;
+}
+
+/* Footer Section */
+footer {
+  text-align: center;
+  font-size: 0.875rem;
+  color: #BDC3C7;
+  margin-top: 50px;
+}
+
+footer a {
+  color: #50E3C2;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 10px;
+  }
+
+  .meditation-challenges {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .meditation-card {
+    width: 80%;
+  }
+Ś
+  .mood-tracker {
+    align-items: stretch;
+  }
+}
+/* Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #f3f4f6;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header Section */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 15px 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+header .user-info {
+  display: flex;
+  align-items: center;
+}
+
+header .user-info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+header .logout-button {
+  background-color: #ef4444;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: 600;
+}
+
+header .logout-button:hover {
+  background-color: #dc2626;
+}
+
+/* Main Content Section */
+.main-content {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Daily Tip Section */
+.daily-tip {
+  display: flex;
+  justify-content: space-between;
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.daily-tip h2 {
+  font-size: 1.75rem;
+  color: #2b2d42;
+}
+
+.daily-tip p {
+  color: #4a4a4a;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.daily-tip .tip-button {
+  background-color: #3b82f6;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.daily-tip .tip-button:hover {
+  background-color: #2563eb;
+}
+
+/* Mood Tracker Section */
+.mood-tracker {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.mood-tracker select {
+  padding: 12px 25px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  width: 250px;
+  background-color: #ffffff;
+  color: #333;
+}
+
+.mood-tracker button {
+  background-color: #3b82f6;
+  color: white;
+  padding: 12px 35px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.mood-tracker button:hover {
+  background-color: #2563eb;
+}
+
+/* Meditation Challenges Section */
+.meditation-challenges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+}
+
+.meditation-card {
+  background-color: #f9fafb;
+  padding: 20px;
+  width: 48%;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.meditation-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.meditation-card img {
+  width: 100%;
+  height: 180px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.meditation-card h3 {
+  font-size: 1.5rem;
+  color: #3b82f6;
+  margin-bottom: 15px;
+}
+
+.meditation-card p {
+  color: #4a4a4a;
+  margin-bottom: 20px;
+}
+
+.meditation-card button {
+  background-color: #3b82f6;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.meditation-card button:hover {
+  background-color: #2563eb;
+}
+
+/* Benefits Section */
+.benefits {
+  background-color: #ffffff;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.benefits h2 {
+  font-size: 2rem;
+  color: #2b2d42;
+  margin-bottom: 20px;
+}
+
+.benefits ul {
+  list-style-type: none;
+  padding: 0;
+  color: #4a4a4a;
+}
+
+.benefits li {
+  font-size: 1.125rem;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.benefits li::before {
+  content: '✔️';
+  margin-right: 10px;
+  color: #3b82f6;
+  font-size: 1.25rem;
+}
+
+/* Testimonials Section */
+.testimonials {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.testimonials .testimonial-card {
+  background-color: #f9fafb;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.testimonials .testimonial-card p {
+  font-size: 1.125rem;
+  color: #4a4a4a;
+  margin-bottom: 10px;
+}
+
+.testimonials .testimonial-card h3 {
+  font-size: 1.25rem;
+  color: #2b2d42;
+  font-weight: 600;
+}
+
+/* Footer Section */
+footer {
+  text-align: center;
+  font-size: 0.875rem;
+  color: #9ca3af;
+  margin-top: 60px;
+}
+
+footer a {
+  color: #50e3c2;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .daily-tip,
+  .mood-tracker,
+  .benefits {
+    flex-direction: column;
+  }
+
+  .meditation-challenges {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .meditation-card {
+    width: 80%;
+  }
+  
+  footer {
+    font-size: 0.75rem;
+  }
+}

@@ -1,0 +1,15 @@
+.daily-tip {
+    background-color: #1D4ED8;  /* Tailwind's blue-500 */
+  }
+  
+  .daily-tip a {
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+  }
+  
+  .daily-tip p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  
