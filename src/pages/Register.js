@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import "./Register.css"; // Correct path if the CSS is in the same folder
+ // Import Register.css (adjust path if necessary)
 import { register } from "../services/authActions"; // Import register action
 
 const RegisterPage = () => {

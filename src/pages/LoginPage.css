@@ -1,0 +1,113 @@
+/* Overall layout of the page */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    background: linear-gradient(to right, #4e73df, #224abe); /* Gradient background */
+    padding: 20px;
+  }
+  
+  /* Styling the login box */
+  .login-box {
+    background-color: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  /* Title/Heading Styling */
+  .login-title {
+    font-size: 28px; /* Increased font size for better emphasis */
+    font-weight: 600; /* Slightly bold to make it stand out more */
+    color: #2d3748; /* A dark gray for contrast */
+    margin-bottom: 20px; /* Margin below the title */
+    text-transform: capitalize; /* Capitalize the first letter of each word */
+    letter-spacing: 1px; /* Add some spacing between letters */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+  }
+  
+  /* Error Message Styling */
+  .error-message {
+    color: #e53e3e;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  /* Input Fields Styling */
+  .input-field {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+  
+  .input-field:focus {
+    border-color: #4e73df;
+    box-shadow: 0 0 5px rgba(78, 115, 223, 0.5);
+  }
+  
+  /* Button Styling */
+  .login-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    background-color: #4e73df;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-btn:hover {
+    background-color: #224abe;
+  }
+  
+  /* Margin and spacing for the dashboard and platform name */
+  .platform-header {
+    text-align: center;
+    color: white;
+    font-size: 36px; /* Larger font for platform name */
+    font-weight: 700;
+    margin-bottom: 30px; /* Space between platform name and other elements */
+  }
+  
+  .dashboard-link {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  
+  .dashboard-link:hover {
+    color: #f1f1f1;
+    text-decoration: underline;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .login-box {
+      padding: 30px;
+    }
+  
+    .login-title {
+      font-size: 22px; /* Adjust the title size for smaller screens */
+    }
+  
+    .platform-header {
+      font-size: 28px; /* Adjust font size for platform name */
+    }
+  }
+  

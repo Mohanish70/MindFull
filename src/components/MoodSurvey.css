@@ -1,123 +1,117 @@
-/* MoodSurvey.css */
-
+/* Mood Survey Container */
 .mood-survey-container {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 30px;
-    background-color: #f9fafb;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .mood-survey-container h2 {
-    color: #333;
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .mood-icons {
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 20px;
-  }
-  
-  .mood-icons button {
-    padding: 12px;
-    background-color: #f0f0f0;
-    border-radius: 50%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: none;
-  }
-  
-  .mood-icons button:hover {
-    transform: scale(1.15);
-  }
-  
-  .mood-icons button:focus {
-    outline: none;
-  }
-  
-  /* Specific mood color styles */
-  .mood-icons button:nth-child(1) {
-    background-color: #FFDD00;
-  }
-  
-  .mood-icons button:nth-child(2) {
-    background-color: #4A90E2;
-  }
-  
-  .mood-icons button:nth-child(3) {
-    background-color: #50C878;
-  }
-  
-  .mood-icons button:nth-child(4) {
-    background-color: #9B59B6;
-  }
-  
-  /* Active mood color */
-  .mood-icons button.active:nth-child(1) {
-    background-color: #FFB400;
-  }
-  
-  .mood-icons button.active:nth-child(2) {
-    background-color: #357ABD;
-  }
-  
-  .mood-icons button.active:nth-child(3) {
-    background-color: #3A8E56;
-  }
-  
-  .mood-icons button.active:nth-child(4) {
-    background-color: #8E44AD;
-  }
-  
-  /* Submit Button */
-  button[type="submit"] {
-    background-color: #3498db;
-    color: white;
-    padding: 12px 30px;
-    font-size: 16px;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 100%;
-    margin-top: 20px;
-    border: none;
-  }
-  
-  button[type="submit"]:disabled {
-    background-color: #BDC3C7;
-  }
-  
-  button[type="submit"]:hover {
-    background-color: #2980b9;
-  }
-  
-  /* Recommendation Styling */
-  .recommendation {
-    background-color: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 10px;
-    padding: 20px;
-    margin-top: 20px;
-  }
-  
-  .recommendation h3 {
-    font-size: 18px;
-    color: #2d3748;
-  }
-  
-  .recommendation p {
-    font-size: 16px;
-    color: #4a5568;
-  }
-  
-  /* For images and video */
-  .recommendation img, .recommendation video {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-top: 20px;
-  }
-  
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #f9fafb;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.mood-survey-container h2 {
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.mood-icons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+}
+
+.mood-icons button {
+  padding: 12px;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+}
+
+.mood-icons button:hover {
+  transform: scale(1.15);
+}
+
+.mood-icons button:focus {
+  outline: none;
+}
+
+/* Specific mood color styles */
+.mood-icons button:nth-child(1) {
+  background-color: #FFDD00;
+}
+
+.mood-icons button:nth-child(2) {
+  background-color: #4A90E2;
+}
+
+.mood-icons button:nth-child(3) {
+  background-color: #50C878;
+}
+
+.mood-icons button:nth-child(4) {
+  background-color: #9B59B6;
+}
+
+/* Submit Button */
+button[type="submit"] {
+  background-color: #3498db;
+  color: white;
+  padding: 12px 30px;
+  font-size: 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  margin-top: 20px;
+  border: none;
+}
+
+button[type="submit"]:disabled {
+  background-color: #BDC3C7;
+}
+
+button[type="submit"]:hover {
+  background-color: #2980b9;
+}
+
+/* Recommendation Styling */
+.recommendation {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.recommendation h3 {
+  font-size: 18px;
+  color: #2d3748;
+}
+
+.recommendation p {
+  font-size: 16px;
+  color: #4a5568;
+}
+
+/* Error message styling */
+.error-message {
+  background-color: #fef2f2;
+  border: 1px solid #fbd5d5;
+  padding: 16px;
+  border-radius: 8px;
+  color: #e53e3e;
+}
+
+/* For images */
+.mood-image {
+  width: 100%;
+  max-width: 400px;  /* Optional: you can set a max width */
+  height: auto;
+  border-radius: 8px;
+  margin-top: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

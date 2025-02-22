@@ -1,56 +1,49 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import './LoginPage.css';
 
 const LoginPage = () => {
-  const { login } = useAuth();  // Get the login function from AuthContext
+  const { login } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');  // State for displaying errors
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    
+
     try {
-      // Attempt to log in with the email and password
-      await login(email, password); 
-      
-      // After successful login, navigate to dashboard
+      await login(email, password);
       navigate('/dashboard');
     } catch (error) {
-      // If an error occurs, display a message
-      setErrorMessage('Invalid credentials!'); 
+      setErrorMessage('Invalid credentials!');
     }
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-96">
-        <h2 className="text-2xl font-bold mb-6 text-center text-gray-700">Login</h2>
+    <div className="login-container">
+      <div className="login-box">
+        <h2 className="login-title">Welcome Back!</h2>
 
-        {/* Show error message if there's any */}
-        {errorMessage && <p className="text-red-500 text-center">{errorMessage}</p>}
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-        <form onSubmit={handleLogin} className="flex flex-col space-y-4">
+        <form onSubmit={handleLogin}>
           <input
             type="email"
             placeholder="Email"
-            className="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="input-field"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="password"
             placeholder="Password"
-            className="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="input-field"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded"
-          >
+          <button type="submit" className="login-btn">
             Login
           </button>
         </form>

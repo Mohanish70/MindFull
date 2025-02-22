@@ -4,6 +4,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './homepage.css';
 
+import backgroundImage from '../images/background.webp'; // Your background image
+import footer from '../images/footer.webp';
+import meditationImage1 from '../images/meditation1.webp';
+import thearpy from '../images/thearpy.webp';
+
 // Navbar Component
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -20,13 +25,17 @@ const Navbar = () => {
         <h1 className="logo text-3xl font-bold text-white">MindWell</h1>
         <ul className="nav-links flex space-x-6">
           <li><a href="#about" className="text-white">About</a></li>
+          <li><a href="#testimonials" className="text-white">Testimonials</a></li>
           <li><a href="#services" className="text-white">Services</a></li>
           <li><a href="#contact" className="text-white">Contact</a></li>
           <li><a href="#features" className="text-white">Features</a></li>
         </ul>
         <div className="auth-buttons">
           {!user ? (
-            <Link to="/login" className="button bg-yellow-500 hover:bg-yellow-600 text-black py-2 px-6 rounded-full">Login</Link>
+            <>
+              <Link to="/login" className="button bg-yellow-500 hover:bg-yellow-600 text-black py-2 px-6 rounded-full mr-4">Login</Link>
+              <Link to="/register" className="button bg-green-500 hover:bg-green-600 text-black py-2 px-6 rounded-full">Register</Link>
+            </>
           ) : (
             <button onClick={handleLogout} className="button bg-red-500 hover:bg-red-600 text-white py-2 px-6 rounded-full">Logout</button>
           )}
@@ -36,21 +45,28 @@ const Navbar = () => {
   );
 };
 
-// Hero Section
+// Hero Section with Background Image
 const Hero = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="hero bg-gradient-to-r from-blue-500 to-purple-600 text-white py-20 px-8">
+    <section 
+      className="hero bg-gradient-to-r from-blue-500 to-purple-600 text-white py-20 px-8 flex flex-col justify-center items-center min-h-screen" // Added flexbox and min-height
+      style={{
+        backgroundImage: `url(${backgroundImage})`, 
+        backgroundSize: 'cover', 
+        backgroundPosition: 'center'
+      }}
+    >
       <motion.h1
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="text-5xl font-bold text-center"
+        className="text-5xl font-bold text-center mb-4" // Added margin-bottom to space it from the button
       >
-        Enhance Your Mental Well-Being with MindWell 
+        Enhance Your Mental Well-Being with MindWell
       </motion.h1>
-      <p className="text-xl mt-4 text-center">Join thousands of people enhancing their mental well-being through mindfulness and self-care.</p>
+      <p className="text-xl text-center mb-6">Join thousands of people enhancing their mental well-being through mindfulness and self-care.</p>
       <motion.button 
         whileHover={{ scale: 1.1 }} 
         className="mt-6 bg-yellow-500 text-black py-3 px-6 rounded-full text-lg font-semibold hover:bg-yellow-600"
@@ -116,7 +132,7 @@ const About = () => (
   <section id="about" className="about py-16">
     <h2 className="text-3xl text-center font-semibold mb-6">About Us</h2>
     <p className="text-xl text-center max-w-2xl mx-auto">
-      MindWell is committed to providing accessible mental health resources. Our goal is to create a supportive environment for individuals to thrive in all aspects of life, mentally and emotionally. 
+      MindWell is committed to providing accessible mental health resources. Our goal is to create a supportive environment for individuals to thrive in all aspects of life, mentally and emotionally.
     </p>
   </section>
 );
@@ -127,19 +143,19 @@ const Services = () => (
     <h2 className="text-3xl font-bold text-center mb-8">Our Services</h2>
     <div className="flex justify-around flex-wrap">
       <div className="service-card bg-white p-6 shadow-lg rounded-lg w-80 mb-6">
-        <img src="https://via.placeholder.com/400x300.png?text=Meditation" alt="Meditation" />
+      <img src={meditationImage1} alt="Meditation" />
         <h3 className="text-2xl font-semibold mb-4">Meditation</h3>
         <p>Relax your mind and find peace.</p>
         <Link to="/services/meditation" className="text-blue-500 hover:underline">Learn More</Link>
       </div>
       <div className="service-card bg-white p-6 shadow-lg rounded-lg w-80 mb-6">
-        <img src="https://via.placeholder.com/400x300.png?text=Therapy+Sessions" alt="Therapy Sessions" />
+        <img src = {thearpy} alt ="Therapy Sessions" />
         <h3 className="text-2xl font-semibold mb-4">Therapy Sessions</h3>
         <p>One-on-one therapy for mental clarity.</p>
         <Link to="/services/therapy-sessions" className="text-blue-500 hover:underline">Learn More</Link>
       </div>
       <div className="service-card bg-white p-6 shadow-lg rounded-lg w-80 mb-6">
-        <img src="https://via.placeholder.com/400x300.png?text=Support+Groups" alt="Support Groups" />
+        <img src="../images/meditation4.webp" alt="Support Groups" />
         <h3 className="text-2xl font-semibold mb-4">Support Groups</h3>
         <p>Join a supportive community.</p>
         <Link to="/services/support-groups" className="text-blue-500 hover:underline">Learn More</Link>
@@ -168,17 +184,15 @@ const Contact = () => (
 const Footer = () => (
   <footer className="bg-gray-800 text-white py-6">
     <div className="container flex justify-between items-center">
-      <p>&copy; 2025 MindWell. All rights reserved.</p>
-      <ul className="footer-links flex space-x-4">
-        <li><a href="#about" className="text-white">About</a></li>
-        <li><a href="#services" className="text-white">Services</a></li>
-        <li><a href="#contact" className="text-white">Contact</a></li>
-      </ul>
+      <div>&copy; 2025 MindWell. All rights reserved.</div>
+      <div>
+        <a href="/privacy-policy" className="text-white hover:text-gray-400">Privacy Policy</a>
+        <img src={footer} alt="Footer" />
+      </div>
     </div>
   </footer>
 );
 
-// Main HomePage Component
 const HomePage = () => {
   return (
     <div>
@@ -193,5 +207,7 @@ const HomePage = () => {
     </div>
   );
 };
+
+
 
 export default HomePage;

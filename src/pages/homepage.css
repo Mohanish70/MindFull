@@ -12,6 +12,7 @@ body {
   line-height: 1.6;
   font-size: 16px;
   padding-top: 80px; /* For fixed navbar offset */
+  transition: background-color 0.3s ease;
 }
 
 /* Navbar Styles */
@@ -24,35 +25,37 @@ body {
   width: 100%;
   z-index: 1000;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.navbar .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: background-color 0.3s ease;
 }
 
 .navbar .logo {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 700;
   color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .navbar .nav-links {
   list-style: none;
   display: flex;
-  gap: 2rem;
+  gap: 3rem;
 }
 
 .navbar .nav-links li a {
   color: #fff;
   text-decoration: none;
-  font-size: 1.1rem;
-  transition: color 0.3s ease;
+  font-size: 1.2rem;
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .navbar .nav-links li a:hover {
   color: #f39c12;
+  transform: scale(1.1);
 }
 
 .navbar .auth-buttons .button {
@@ -106,87 +109,51 @@ body {
   transform: scale(1.1);
 }
 
-/* About Section */
-.about {
-  background-color: #fff;
-  padding: 5rem 2rem;
-  text-align: center;
-  border-bottom: 5px solid #f4f7fc;
-}
-
-.about h2 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-}
-
-.about p {
-  font-size: 1.2rem;
-  color: #666;
-  max-width: 800px;
-  margin: 0 auto;
-  line-height: 1.7;
-}
-
-/* Services Section */
-.services {
+/* Features Section */
+.features {
   padding: 5rem 2rem;
   background-color: #f4f7fc;
-}
-
-.services h2 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 2rem;
   text-align: center;
 }
 
-.services .service-card {
+.features h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.features .feature-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.features .feature-card {
   background-color: #fff;
   border-radius: 10px;
-  overflow: hidden;
+  padding: 2rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 350px;
-  margin-bottom: 2rem;
-  transition: transform 0.3s ease;
+  max-width: 300px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.services .service-card:hover {
+.features .feature-card:hover {
   transform: translateY(-10px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
-.services .service-card img {
-  width: 100%;
-  height: auto;
-}
-
-.services .service-card h3 {
+.features .feature-card h3 {
   font-size: 1.8rem;
   font-weight: 600;
-  margin: 1rem;
+  margin-bottom: 1rem;
 }
 
-.services .service-card p {
+.features .feature-card p {
   font-size: 1rem;
   color: #666;
-  padding: 0 1rem 1.5rem;
-}
-
-.services .service-card a {
-  display: inline-block;
-  margin: 1rem;
-  padding: 0.75rem 1.5rem;
-  background-color: #f39c12;
-  color: #fff;
-  font-size: 1rem;
-  text-decoration: none;
-  border-radius: 30px;
-  transition: background-color 0.3s ease;
-}
-
-.services .service-card a:hover {
-  background-color: #e67e22;
+  margin-bottom: 1.5rem;
 }
 
 /* Testimonials Section */
@@ -202,6 +169,13 @@ body {
   text-align: center;
 }
 
+.testimonials .testimonial-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
 .testimonials .testimonial-card {
   background-color: #fff;
   border-radius: 10px;
@@ -209,7 +183,6 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 350px;
-  margin: 0 1rem 2rem 1rem;
   transition: transform 0.3s ease;
 }
 
@@ -230,6 +203,86 @@ body {
 .testimonials .testimonial-card .text-gray-500 {
   color: #777;
   font-size: 1rem;
+}
+
+/* About Section */
+.about {
+  padding: 5rem 2rem;
+  text-align: center;
+  background-color: #fff;
+}
+
+.about h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.about p {
+  font-size: 1.2rem;
+  color: #666;
+  line-height: 1.8;
+}
+
+/* Services Section */
+.services {
+  padding: 5rem 2rem;
+  background-color: #f4f7fc;
+}
+
+.services h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.services .service-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.services .service-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 300px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.services .service-card:hover {
+  transform: translateY(-10px);
+}
+
+.services .service-card h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.services .service-card p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.services .service-card a {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #f39c12;
+  color: #fff;
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: background-color 0.3s ease;
+}
+
+.services .service-card a:hover {
+  background-color: #e67e22;
 }
 
 /* Contact Section */
@@ -319,7 +372,7 @@ body {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .navbar .nav-links {
     display: none;
   }
@@ -340,12 +393,102 @@ body {
     max-width: 100%;
   }
 
-  .contact form {
-    width: 90%;
-  }
-
-  .footer .footer-links {
+  .features .feature-container {
     flex-direction: column;
     align-items: center;
   }
+
+  .services .service-container {
+    flex-direction: column;
+  }
+}
+
+/* Services Section */
+.services .service-card img {
+  width: 100%; /* Ensure the images cover the width of the container */
+  height: auto; /* Maintain the aspect ratio */
+  border-radius: 8px; /* Optional: for rounded corners */
+  object-fit: cover; /* Ensure the image fits the container without distorting */
+}
+/* Footer Section */
+.footer img {
+  max-width: 100%; /* Prevent the image from overflowing */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: contain; /* Ensures the image is contained within its box */
+}
+/* Adjust service card to be more flexible */
+.services .service-card img {
+  max-height: 250px; /* Prevent overly large images */
+  object-fit: cover; /* Keeps the image cover inside its container */
+}
+
+/* Footer image size limitation */
+.footer img {
+  max-width: 150px; /* Ensure footer image is not too large */
+  height: auto;
+}
+/* Card width constraints */
+.services .service-card,
+.testimonials .testimonial-card {
+  max-width: 100%;
+  width: 100%;
+}
+
+.services .service-card {
+  width: 100%;
+  max-width: 320px; /* Limit max width for the card */
+  margin-bottom: 2rem;
+}
+
+.testimonials .testimonial-card {
+  width: 100%;
+  max-width: 350px; /* Limit max width for testimonial cards */
+}
+/* Ensure the services and testimonials images stay within their containers */
+.services .service-container,
+.testimonials .testimonial-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  align-items: stretch; /* Prevent images from growing beyond the container */
+}
+
+/* Ensure the images scale well in responsive layouts */
+@media (max-width: 768px) {
+  .services .service-card img,
+  .testimonials .testimonial-card img {
+    width: 100%; /* Make images responsive */
+    height: auto; /* Maintain aspect ratio */
+  }
+}
+/* Footer Styles */
+.footer {
+  background-color: #2a2a2a;
+  color: #fff;
+  padding: 1.5rem 2rem; /* Reduced padding for a more compact footer */
+  text-align: center;
+}
+
+.footer p {
+  font-size: 0.9rem; /* Reduced font size */
+  margin-bottom: 0.5rem; /* Adjusted margin for tighter spacing */
+}
+
+.footer .footer-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem; /* Adjusted gap for better alignment */
+}
+
+.footer .footer-links li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem; /* Reduced font size */
+  transition: color 0.3s ease;
+}
+
+.footer .footer-links li a:hover {
+  color: #f39c12;
 }

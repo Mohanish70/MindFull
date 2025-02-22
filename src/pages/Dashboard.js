@@ -15,7 +15,17 @@ import Reminder from '../components/Reminder';
 import TestimonialsSection from '../components/TestimonialsSection';
 import { useAuth } from '../context/AuthContext';
 import { useMeditation } from '../context/MeditationContext';
+import bodyscan from '../images/bodyscan.webp';
+import focus from '../images/focus.webp';
+import MeditationforKids from '../images/MeditationforKids.webp';
+import mindfull_meditation from '../images/mindfull_meditation.webp';
+import sleepmeditaion from '../images/sleepmeditation.webp';
+import stressrelief from '../images/stressrelief.webp';
 import './dashboard.css';
+
+
+// Correct image import
+import backgroundImage from '../images/background.webp'; // Adjust the path if necessary
 
 function Dashboard() {
   const { logout, user } = useAuth();
@@ -37,17 +47,26 @@ function Dashboard() {
   ];
 
   const meditationSessions = [
-    { title: 'Mindfulness Meditation', description: '10-minute guided session.', image: '/path/to/mindfulness-image.jpg' },
-    { title: 'Body Scan', description: '15-minute guided session.', image: '/path/to/body-scan-image.jpg' },
-    { title: 'Stress Relief', description: '5-minute breathing exercise.', image: '/path/to/stress-relief-image.jpg' },
-    { title: 'Focus & Productivity', description: '15-minute guided session.', image: '/path/to/focus-productivity-image.jpg' },
-    { title: 'Sleep Meditation', description: '20-minute guided session.', image: '/path/to/sleep-meditation-image.jpg' },
-    { title: 'Meditation for Kids', description: '5-minute guided session.', image: '/path/to/meditation-for-kids-image.jpg' }
+    { title: 'Mindfulness Meditation', description: '10-minute guided session.', image: mindfull_meditation },  
+    { title: 'Body Scan', description: '15-minute guided session.', image: bodyscan },
+    { title: 'Stress Relief', description: '5-minute breathing exercise.', image: stressrelief },
+    { title: 'Focus & Productivity', description: '15-minute guided session.', image: focus },
+    { title: 'Sleep Meditation', description: '20-minute guided session.', image: sleepmeditaion },
+    { title: 'Meditation for Kids', description: '5-minute guided session.', image: MeditationforKids }
   ];
+  
+  
 
   return (
-    <div className="dashboard-container bg-gray-100 min-h-screen p-8">
-      <div className="dashboard-content max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+    <div 
+      className="dashboard-container bg-gray-100 min-h-screen p-8"
+      style={{ 
+        backgroundImage: `url(${backgroundImage})`, 
+        backgroundSize: 'cover', 
+        backgroundPosition: 'center' 
+      }}
+    >
+      <div className="dashboard-content max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg opacity-90">
         {/* Header Section */}
         <Header user={user} />
 
@@ -79,6 +98,7 @@ function Dashboard() {
             <option value="stressed">Stressed</option>
             <option value="happy">Happy</option>
             <option value="tired">Tired</option>
+            <option value="angry">Angry</option>
           </select>
         </div>
         <Recommendation mood={mood} />
