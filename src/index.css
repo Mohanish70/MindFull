@@ -91,6 +91,60 @@ input[type="submit"]:disabled:hover {
     background-color: #ccc;
 }
 
+/* src/index.css or src/styles.css */
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: #121212;
+    color: #f4f7fc;
+  }
+  
+  body.dark-mode .navbar {
+    background-color: #1f1f1f;
+  }
+  
+  body.dark-mode .hero {
+    background: linear-gradient(135deg, #232323, #2f3b44);
+  }
+  
+  body.dark-mode .footer {
+    background-color: #1f1f1f;
+  }
+  
+  body.dark-mode .services .service-card,
+  body.dark-mode .testimonials .testimonial-card {
+    background-color: #2a2a2a;
+    color: #f4f7fc;
+  }
+  
+  body.dark-mode .footer a {
+    color: #f39c12;
+  }
+/* src/styles.css */
+
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f39c12;
+    color: #fff;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    font-size: 1rem;
+    z-index: 1000;
+    animation: fadeOut 3s forwards;
+  }
+  
+  @keyframes fadeOut {
+    0% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+    
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
