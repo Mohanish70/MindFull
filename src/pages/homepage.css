@@ -9,8 +9,8 @@
 body {
   background-color: #f4f7fc;
   color: #333;
-  line-height: 1.6;
   font-size: 16px;
+  line-height: 1.6;
   padding-top: 80px; /* For fixed navbar offset */
   transition: background-color 0.3s ease;
 }
@@ -76,7 +76,7 @@ body {
 .hero {
   background: linear-gradient(135deg, #2c3e50, #4f6d7a);
   color: #fff;
-  padding: 8rem 2rem; /* Increased padding for larger hero section */
+  padding: 8rem 2rem;
   text-align: center;
   border-bottom: 5px solid #f39c12;
 }
@@ -123,10 +123,9 @@ body {
 }
 
 .features .feature-container {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 2rem;
-  flex-wrap: wrap;
 }
 
 .features .feature-card {
@@ -134,8 +133,6 @@ body {
   border-radius: 10px;
   padding: 2rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 300px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -170,10 +167,9 @@ body {
 }
 
 .testimonials .testimonial-container {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
-  flex-wrap: wrap;
 }
 
 .testimonials .testimonial-card {
@@ -181,8 +177,6 @@ body {
   border-radius: 10px;
   padding: 2rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 350px;
   transition: transform 0.3s ease;
 }
 
@@ -238,10 +232,9 @@ body {
 }
 
 .services .service-container {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
-  flex-wrap: wrap;
 }
 
 .services .service-card {
@@ -249,8 +242,6 @@ body {
   border-radius: 10px;
   padding: 2rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 300px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -350,145 +341,128 @@ body {
 
 .footer p {
   font-size: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
-.footer .footer-links {
-  list-style: none;
+/* Features Section Image Handling */
+.features .feature-card img {
+  width: 100%; /* Ensure the image doesn't exceed the card width */
+  height: auto; /* Maintain aspect ratio */
+  max-width: 250px; /* Limit max width to prevent large images */
+  margin-bottom: 1.5rem; /* Add space below the image */
+  object-fit: cover; /* Make sure images fill their containers appropriately */
+}
+
+/* Testimonials Section Image Handling */
+.testimonials .testimonial-card img {
+  width: 100%; /* Ensure the image doesn't exceed the card width */
+  height: auto; /* Maintain aspect ratio */
+  max-width: 150px; /* Limit max width for testimonial images */
+  border-radius: 50%; /* Make images circular */
+  margin-bottom: 1.5rem; /* Add space below the image */
+  object-fit: cover; /* Make sure images fit well inside the circular container */
+}
+
+/* Additional adjustments to improve overall visual balance */
+.features .feature-card {
   display: flex;
-  justify-content: center;
-  gap: 2rem;
+  flex-direction: column;
+  align-items: center; /* Center the image and text */
+  justify-content: flex-start;
 }
 
-.footer .footer-links li a {
-  color: #fff;
-  text-decoration: none;
+.testimonials .testimonial-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the image and text */
+  justify-content: flex-start;
+}
+
+.testimonials .testimonial-card p {
+  font-size: 1.1rem;
+  color: #333;
+  text-align: center; /* Center-align testimonial text */
+}
+
+.testimonials .testimonial-card .font-semibold {
+  font-size: 1.3rem;
+  margin-top: 1rem;
+  text-align: center; /* Center-align the names */
+}
+
+.testimonials .testimonial-card .text-gray-500 {
+  color: #777;
   font-size: 1rem;
-  transition: color 0.3s ease;
+  text-align: center; /* Center-align the roles */
 }
 
-.footer .footer-links li a:hover {
-  color: #f39c12;
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .navbar .nav-links {
-    display: none;
+/* General Responsiveness for Images and Layout */
+@media (max-width: 768px) {
+  /* Features Section */
+  .features .feature-container {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust grid for smaller screens */
   }
 
-  .navbar .auth-buttons {
-    margin-left: auto;
+  .features .feature-card img {
+    max-width: 200px; /* Reduce image size on smaller screens */
+  }
+
+  /* Testimonials Section */
+  .testimonials .testimonial-container {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust grid for smaller screens */
+  }
+
+  .testimonials .testimonial-card img {
+    max-width: 120px; /* Reduce testimonial image size on smaller screens */
   }
 
   .hero h1 {
-    font-size: 2.5rem;
+    font-size: 2.5rem; /* Adjust hero section heading for smaller devices */
   }
 
-  .services .service-card {
-    max-width: 100%;
+  .hero p {
+    font-size: 1.1rem; /* Adjust paragraph size in the hero section */
   }
 
-  .testimonials .testimonial-card {
-    max-width: 100%;
+  .contact form input,
+  .contact form textarea {
+    padding: 0.8rem; /* Reduce padding in form fields */
+  }
+
+  .contact form .send-btn {
+    padding: 0.9rem 1.5rem; /* Adjust button size for smaller screens */
+  }
+}
+
+/* For Extra Small Devices (Phones in Portrait) */
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 2rem; /* Slightly smaller heading size for very small devices */
+  }
+
+  .hero p {
+    font-size: 1rem; /* Adjust paragraph size */
+  }
+
+  /* Features Section */
+  .features h2 {
+    font-size: 2rem; /* Adjust heading size */
   }
 
   .features .feature-container {
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: 1fr; /* Stack features in a single column on very small devices */
   }
 
-  .services .service-container {
-    flex-direction: column;
+  .features .feature-card img {
+    max-width: 180px; /* Further reduce the image size */
   }
-}
 
-/* Services Section */
-.services .service-card img {
-  width: 100%; /* Ensure the images cover the width of the container */
-  height: auto; /* Maintain the aspect ratio */
-  border-radius: 8px; /* Optional: for rounded corners */
-  object-fit: cover; /* Ensure the image fits the container without distorting */
-}
-/* Footer Section */
-.footer img {
-  max-width: 100%; /* Prevent the image from overflowing */
-  height: auto; /* Maintain aspect ratio */
-  object-fit: contain; /* Ensures the image is contained within its box */
-}
-/* Adjust service card to be more flexible */
-.services .service-card img {
-  max-height: 250px; /* Prevent overly large images */
-  object-fit: cover; /* Keeps the image cover inside its container */
-}
-
-/* Footer image size limitation */
-.footer img {
-  max-width: 150px; /* Ensure footer image is not too large */
-  height: auto;
-}
-/* Card width constraints */
-.services .service-card,
-.testimonials .testimonial-card {
-  max-width: 100%;
-  width: 100%;
-}
-
-.services .service-card {
-  width: 100%;
-  max-width: 320px; /* Limit max width for the card */
-  margin-bottom: 2rem;
-}
-
-.testimonials .testimonial-card {
-  width: 100%;
-  max-width: 350px; /* Limit max width for testimonial cards */
-}
-/* Ensure the services and testimonials images stay within their containers */
-.services .service-container,
-.testimonials .testimonial-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-  align-items: stretch; /* Prevent images from growing beyond the container */
-}
-
-/* Ensure the images scale well in responsive layouts */
-@media (max-width: 768px) {
-  .services .service-card img,
+  /* Testimonials Section */
   .testimonials .testimonial-card img {
-    width: 100%; /* Make images responsive */
-    height: auto; /* Maintain aspect ratio */
+    max-width: 100px; /* Further reduce testimonial image size */
   }
-}
-/* Footer Styles */
-.footer {
-  background-color: #2a2a2a;
-  color: #fff;
-  padding: 1.5rem 2rem; /* Reduced padding for a more compact footer */
-  text-align: center;
-}
 
-.footer p {
-  font-size: 0.9rem; /* Reduced font size */
-  margin-bottom: 0.5rem; /* Adjusted margin for tighter spacing */
-}
-
-.footer .footer-links {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem; /* Adjusted gap for better alignment */
-}
-
-.footer .footer-links li a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 0.9rem; /* Reduced font size */
-  transition: color 0.3s ease;
-}
-
-.footer .footer-links li a:hover {
-  color: #f39c12;
+  .testimonials h2 {
+    font-size: 2rem; /* Adjust heading size for small devices */
+  }
 }

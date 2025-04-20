@@ -4,7 +4,7 @@ import './DailyTip.css';
 const DailyTip = () => {
   const [tip, setTip] = useState('');
 
-  // Dummy tips data, this could be replaced by API data or dynamic content
+  
   const tips = [
     "Take 5 minutes to practice deep breathing and relax.",
     "Start your day with gratitude—write down 3 things you're grateful for.",
@@ -13,11 +13,12 @@ const DailyTip = () => {
     "Set aside time each day for something you love, even if it's just 15 minutes."
   ];
 
-  // Randomly select a tip for today
+ 
   useEffect(() => {
     const randomTip = tips[Math.floor(Math.random() * tips.length)];
     setTip(randomTip);
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); 
 
   return (
     <section id="daily-tip" className="daily-tip bg-blue-500 text-white py-12">
