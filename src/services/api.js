@@ -1,8 +1,8 @@
-// src/services/api.js
 import axios from "axios";
 
+// Create an axios instance with dynamic baseURL
 const api = axios.create({
-  baseURL: "http://localhost:5000/api", // ✅ Add `/api` to match backend routes
+  baseURL: process.env.REACT_APP_API_URL + "/api", // Use dynamic API URL from .env
   withCredentials: true, // ✅ Important for sending cookies/auth tokens
 });
 
