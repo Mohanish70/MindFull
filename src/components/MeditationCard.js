@@ -1,4 +1,4 @@
-import React from 'react';
+import './MeditationCard.css';
 
 function MeditationCard({ title, description, onStart, image }) {
   return (

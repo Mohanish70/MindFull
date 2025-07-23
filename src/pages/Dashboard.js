@@ -1,166 +1,255 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import BenefitsSection from '../components/BenefitsSection';
-import DailyTip from '../components/DailyTip';
-import FeaturesSection from '../components/FeaturesSection';
-import Header from '../components/Header';
-import MeditationCard from '../components/MeditationCard';
-import MeditationChallenges from '../components/MeditationChallenges';
-import MeditationHistory from '../components/MeditationHistory';
-import MeditationProgress from '../components/MeditationProgress';
-import MoodSurvey from '../components/MoodSurvey';
-import MoodTracker from '../components/MoodTracker';
-import Recommendation from '../components/Recommendation';
-import Reminder from '../components/Reminder';
-import TestimonialsSection from '../components/TestimonialsSection';
-import { useAuth } from '../context/AuthContext';
-import { useMeditation } from '../context/MeditationContext';
-import bodyscan from '../images/bodyscan.webp';
-import focus from '../images/focus.webp';
-import MeditationforKids from '../images/MeditationforKids.webp';
-import mindfull_meditation from '../images/mindfull_meditation.webp';
-import sleepmeditaion from '../images/sleepmeditation.webp';
-import stressrelief from '../images/stressrelief.webp';
+import { useAppContext } from '../context/AppContext';
 import './dashboard.css';
 
+// Components
+import Header from '../components/Header';
+import DailyTip from '../components/DailyTip';
+import MoodTracker from '../components/MoodTracker';
+import MeditationCard from '../components/MeditationCard';
+import MeditationProgress from '../components/MeditationProgress';
+import MeditationHistory from '../components/MeditationHistory';
+import Reminder from '../components/Reminder';
 
-// Correct image import
-import backgroundImage from '../images/background.webp'; // Adjust the path if necessary
+// Session Images
+import mindfulnessImg from '../images/mindfulness.webp';
+import bodyScanImg from '../images/body-scan.webp';
+import stressReliefImg from '../images/stress-relief.webp';
+import focusImg from '../images/focus.webp';
+import sleepImg from '../images/sleep.webp';
+
+// Icons
+import meditationIcon from '../images/meditation-icon.webp';
+import therapyIcon from '../images/therapy-icon.webp';
+import communityIcon from '../images/community-icon.webp';
+import logoutIcon from '../images/logout-icon.webp';
 
 function Dashboard() {
-  const { logout, user } = useAuth();
+  const { user, logout, sessions, history, addHistory } = useAppContext();
   const navigate = useNavigate();
-  const { currentSession, sessionTime, history, startSession, setReminder } = useMeditation();
-
-  const [mood, setMood] = useState('');
+  const [activeTab, setActiveTab] = useState('meditation');
+  const [currentSession, setCurrentSession] = useState(null);
+  const [sessionTime, setSessionTime] = useState(0);
+  const [timer, setTimer] = useState(null);
 
   const handleLogout = () => {
     logout();
     navigate('/login');
   };
 
+  const startSession = (session) => {
+    setCurrentSession(session);
+    setSessionTime(0);
+    
+    // Clear any existing timer
+    if (timer) clearInterval(timer);
+    
+    // Start new timer
+    const newTimer = setInterval(() => {
+      setSessionTime(prevTime => {
+        const newTime = prevTime + 1;
+        
+        // If session completed
+        if (newTime >= session.duration * 60) {
+          clearInterval(newTimer);
+          completeSession(session);
+          return prevTime;
+        }
+        
+        return newTime;
+      });
+    }, 1000);
+    
+    setTimer(newTimer);
+  };
+
+  const completeSession = (session) => {
+    const sessionRecord = {
+      id: Date.now(),
+      sessionId: session.id,
+      title: session.title,
+      date: new Date().toISOString(),
+      duration: session.duration,
+      completed: true
+    };
+    
+    addHistory(sessionRecord);
+    setCurrentSession(null);
+  };
+
+  const stopSession = () => {
+    if (timer) clearInterval(timer);
+    setCurrentSession(null);
+    setSessionTime(0);
+  };
+
+  const setReminder = (time) => {
+    console.log(`Reminder set for ${time}`);
+    // In a real app, you would implement reminder logic here
+  };
+
   const moodData = [
-    { date: '2025-02-13', moodScore: 7 },
-    { date: '2025-02-14', moodScore: 5 },
-    { date: '2025-02-15', moodScore: 6 },
-    { date: '2025-02-16', moodScore: 8 },
+    { date: 'Mon', moodScore: 7 },
+    { date: 'Tue', moodScore: 5 },
+    { date: 'Wed', moodScore: 6 },
+    { date: 'Thu', moodScore: 8 },
+    { date: 'Fri', moodScore: 9 },
+    { date: 'Sat', moodScore: 7 },
+    { date: 'Sun', moodScore: 6 }
   ];
 
   const meditationSessions = [
-    { title: 'Mindfulness Meditation', description: '10-minute guided session.', image: mindfull_meditation },  
-    { title: 'Body Scan', description: '15-minute guided session.', image: bodyscan },
-    { title: 'Stress Relief', description: '5-minute breathing exercise.', image: stressrelief },
-    { title: 'Focus & Productivity', description: '15-minute guided session.', image: focus },
-    { title: 'Sleep Meditation', description: '20-minute guided session.', image: sleepmeditaion },
-    { title: 'Meditation for Kids', description: '5-minute guided session.', image: MeditationforKids }
+    { 
+      id: 1,
+      title: 'Mindfulness Meditation', 
+      description: '10-minute guided session for beginners', 
+      duration: 10,
+      image: mindfulnessImg 
+    },
+    { 
+      id: 2,
+      title: 'Body Scan', 
+      description: '15-minute full body relaxation', 
+      duration: 15,
+      image: bodyScanImg 
+    },
+    { 
+      id: 3,
+      title: 'Stress Relief', 
+      description: '5-minute breathing exercise', 
+      duration: 5,
+      image: stressReliefImg 
+    },
+    { 
+      id: 4,
+      title: 'Focus Meditation', 
+      description: '15-minute focus enhancement', 
+      duration: 15,
+      image: focusImg 
+    },
+    { 
+      id: 5,
+      title: 'Sleep Meditation', 
+      description: '20-minute sleep preparation', 
+      duration: 20,
+      image: sleepImg 
+    }
   ];
-  
-  
+
+  const challenges = [
+    { id: 1, title: '7-Day Mindfulness Challenge', progress: 3, total: 7 },
+    { id: 2, title: '30-Day Meditation Streak', progress: 12, total: 30 }
+  ];
+
+  // Clean up timer on unmount
+  useEffect(() => {
+    return () => {
+      if (timer) clearInterval(timer);
+    };
+  }, [timer]);
 
   return (
-    <div 
-      className="dashboard-container bg-gray-100 min-h-screen p-8"
-      style={{ 
-        backgroundImage: `url(${backgroundImage})`, 
-        backgroundSize: 'cover', 
-        backgroundPosition: 'center' 
-      }}
-    >
-      <div className="dashboard-content max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg opacity-90">
-        {/* Header Section */}
-        <Header user={user} />
+    <div className="dashboard-container">
+      <Header>
+        <button onClick={handleLogout} className="logout-btn">
+          <img src={logoutIcon} alt="Logout" className="logout-icon" />
+          Logout
+        </button>
+      </Header>
+      
+      <div className="dashboard-content">
+        <div className="dashboard-main">
+          <section className="welcome-section">
+            <h2>Welcome back, {user?.name || user?.email || 'User'}!</h2>
+            <p>How are you feeling today?</p>
+          </section>
 
-        {/* Daily Mental Health Tip */}
-        <div className="mb-8">
           <DailyTip />
-        </div>
+          <MoodTracker data={moodData} />
 
-        {/* Mood Survey */}
-        <div className="mb-8">
-          <MoodSurvey />
-        </div>
+          <div className="dashboard-tabs">
+            <button 
+              className={`tab-btn ${activeTab === 'meditation' ? 'active' : ''}`}
+              onClick={() => setActiveTab('meditation')}
+            >
+              <img src={meditationIcon} alt="Meditation" className="tab-icon" />
+              Meditation
+            </button>
+            <button 
+              className={`tab-btn ${activeTab === 'therapy' ? 'active' : ''}`}
+              onClick={() => setActiveTab('therapy')}
+            >
+              <img src={therapyIcon} alt="Therapy" className="tab-icon" />
+              Therapy
+            </button>
+            <button 
+              className={`tab-btn ${activeTab === 'community' ? 'active' : ''}`}
+              onClick={() => setActiveTab('community')}
+            >
+              <img src={communityIcon} alt="Community" className="tab-icon" />
+              Community
+            </button>
+          </div>
 
-        {/* Mood Tracker */}
-        <div className="mb-8">
-          <h2 className="text-xl font-semibold mb-4">Your Mood Over Time</h2>
-          <MoodTracker moodData={moodData} />
-        </div>
+          {activeTab === 'meditation' && (
+            <>
+              {currentSession && (
+                <MeditationProgress 
+                  session={currentSession} 
+                  time={sessionTime}
+                  onStop={stopSession}
+                />
+              )}
 
-        {/* Personalized Meditation Recommendations */}
-        <div className="mb-8">
-          <h2 className="text-xl font-semibold">How Are You Feeling Today?</h2>
-          <select
-            value={mood}
-            onChange={(e) => setMood(e.target.value)}
-            className="border p-2 rounded-lg mt-2"
-          >
-            <option value="anxious">Anxious</option>
-            <option value="stressed">Stressed</option>
-            <option value="happy">Happy</option>
-            <option value="tired">Tired</option>
-            <option value="angry">Angry</option>
-          </select>
-        </div>
-        <Recommendation mood={mood} />
+              <div className="sessions-grid">
+                {meditationSessions.map(session => (
+                  <MeditationCard
+                    key={session.id}
+                    session={session}
+                    onStart={() => startSession(session)}
+                  />
+                ))}
+              </div>
 
-        {/* Meditation Benefits Section */}
-        <div className="mb-8">
-          <BenefitsSection />
-        </div>
+              <div className="challenges-section">
+                <h3>Current Challenges</h3>
+                <div className="challenges-grid">
+                  {challenges.map(challenge => (
+                    <div key={challenge.id} className="challenge-card">
+                      <h4>{challenge.title}</h4>
+                      <div className="progress-bar">
+                        <div 
+                          className="progress-fill"
+                          style={{ width: `${(challenge.progress/challenge.total)*100}%` }} 
+                        />
+                      </div>
+                      <p>{challenge.progress}/{challenge.total} days</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-        {/* Features Section */}
-        <div className="mb-8">
-          <FeaturesSection />
-        </div>
-
-        {/* Testimonials Section */}
-        <div className="mb-8">
-          <TestimonialsSection />
-        </div>
-
-        {/* Meditation Challenges */}
-        <div className="mb-8">
-          <MeditationChallenges />
-        </div>
-
-        {/* Meditation Cards (Sessions) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          {meditationSessions.map((session, idx) => (
-            <MeditationCard
-              key={idx}
-              title={session.title}
-              description={session.description}
-              image={session.image}
-              onStart={() => startSession(session)}
-            />
-          ))}
-        </div>
-
-        {/* Meditation Progress */}
-        <div className="mb-8">
-          {currentSession && (
-            <MeditationProgress sessionType={currentSession.title} sessionTime={sessionTime} />
+              <Reminder setReminder={setReminder} />
+              <MeditationHistory history={history} />
+            </>
           )}
-        </div>
 
-        {/* Meditation Reminder */}
-        <div className="mb-8">
-          <Reminder setReminder={setReminder} />
-        </div>
+          {activeTab === 'therapy' && (
+            <div className="therapy-section">
+              <h3>Therapy Resources</h3>
+              <p>Connect with licensed therapists</p>
+              <button className="primary-btn">Find a Therapist</button>
+            </div>
+          )}
 
-        {/* Meditation History */}
-        <div className="mb-8">
-          <MeditationHistory history={history} />
-        </div>
-
-        {/* Logout Button */}
-        <div className="logout-button-container mt-6">
-          <button
-            onClick={handleLogout}
-            className="bg-red-500 text-white py-2 px-6 rounded-full hover:bg-red-600"
-          >
-            Logout
-          </button>
+          {activeTab === 'community' && (
+            <div className="community-section">
+              <h3>Community Support</h3>
+              <p>Join discussions with others</p>
+              <button className="primary-btn">Browse Groups</button>
+            </div>
+          )}
         </div>
       </div>
     </div>

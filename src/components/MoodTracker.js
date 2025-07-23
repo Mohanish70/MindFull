@@ -1,38 +1,47 @@
-import { CategoryScale, Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Title, Tooltip } from 'chart.js';
 import React from 'react';
-import { Line } from 'react-chartjs-2';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import './MoodTracker.css';
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+const MoodTracker = ({ data = [] }) => {
+  // Ensure data is always an array, even if undefined
+  const moodData = Array.isArray(data) ? data : [];
 
-function MoodTracker({ moodData }) {
-  // Prepare the chart data based on the mood data provided
-  const data = {
-    labels: moodData.map(entry => entry.date),
-    datasets: [
-      {
-        label: 'Mood Tracker',
-        data: moodData.map(entry => entry.moodScore), // Mood score (0 - 10, for example)
-        borderColor: 'rgba(75,192,192,1)',
-        backgroundColor: 'rgba(75,192,192,0.2)',
-        fill: true,
-      },
-    ],
-  };
+  // Default data if empty
+  const defaultData = [
+    { date: 'Mon', moodScore: 5 },
+    { date: 'Tue', moodScore: 6 },
+    { date: 'Wed', moodScore: 7 },
+    { date: 'Thu', moodScore: 6 },
+    { date: 'Fri', moodScore: 8 },
+    { date: 'Sat', moodScore: 7 },
+    { date: 'Sun', moodScore: 9 }
+  ];
 
-  // Options to make the chart responsive
-  const options = {
-    responsive: true,
-    maintainAspectRatio: false, // To avoid squishing on small screens
-  };
+  const chartData = moodData.length > 0 ? moodData : defaultData;
 
   return (
-    <div className="bg-white shadow-lg rounded-lg p-6">
-      <h2 className="text-xl font-semibold">Mood Tracker</h2>
-      <div style={{ height: '300px' }}> {/* Set a specific height */}
-        <Line data={data} options={options} />
+    <div className="mood-tracker-container">
+      <h3>Your Mood This Week</h3>
+      <div className="chart-container">
+        <ResponsiveContainer width="100%" height={300}>
+          <LineChart data={chartData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="date" />
+            <YAxis domain={[0, 10]} />
+            <Tooltip />
+            <Line 
+              type="monotone" 
+              dataKey="moodScore" 
+              stroke="#4f46e5" 
+              strokeWidth={2}
+              dot={{ r: 4 }}
+              activeDot={{ r: 6 }}
+            />
+          </LineChart>
+        </ResponsiveContainer>
       </div>
     </div>
   );
-}
+};
 
 export default MoodTracker;

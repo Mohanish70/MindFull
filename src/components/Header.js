@@ -1,23 +1,25 @@
 import React from 'react';
+import { useAppContext } from '../context/AppContext';
 
-const Header = ({ user }) => {
+const Header = () => {
+  const { user, logout } = useAppContext();
+
   return (
-    <header className="bg-blue-900 text-white py-16">
-      <div className="container mx-auto text-center">
-        <h1 className="text-5xl font-bold mb-4">Welcome to MindWell</h1>
-        <p className="text-xl mb-8">Unlock your full potential with mindfulness, therapy, and self-care resources.</p>
+    <header className="fixed top-0 w-full z-50 bg-indigo-700 text-white p-4 shadow-md">
+      <div className="container mx-auto flex justify-between items-center">
+        <h1 className="text-xl font-bold">MindWell</h1>
         
-        {/* Display user's name if logged in */}
-        {user && (
-          <div className="mb-4">
-            <img
-              src={user.profilePicture || '/path/to/default-avatar.png'}
-              alt="User Avatar"
-              className="w-16 h-16 rounded-full border-2 border-gray-300 mx-auto"
-            />
-            <p className="text-2xl mt-4">{user.name}</p>
+        {user ? (
+          <div className="flex items-center space-x-4">
+            <span className="hidden md:inline">{user.email}</span>
+            <button 
+              onClick={logout}
+              className="bg-red-500 hover:bg-red-600 px-3 py-1 rounded transition-colors"
+            >
+              Logout
+            </button>
           </div>
-        )}
+        ) : null}
       </div>
     </header>
   );

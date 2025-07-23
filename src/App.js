@@ -1,19 +1,14 @@
 import React, { useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-
-// Context Providers
 import { useAuth } from './context/AuthContext';
-import { DarkModeProvider } from './context/DarkModeContext';
-import { MeditationProvider } from './context/MeditationContext';
 
 // Components
-import DarkModeToggle from './components/DarkModeToggle';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Navbar from './components/Navbar';
 import Notification from './components/Notification';
 
-// Pages & Sections
+// Pages
 import AdminPanel from './pages/AdminPanel';
 import Dashboard from './pages/Dashboard';
 import Home from './pages/Homepage';
@@ -21,6 +16,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import SessionPage from './pages/SessionPage';
 
+// Sections
 import BenefitsSection from './components/BenefitsSection';
 import DailyTip from './components/DailyTip';
 import FeaturesSection from './components/FeaturesSection';
@@ -43,61 +39,58 @@ function App() {
   };
 
   return (
-    <DarkModeProvider>
-      <MeditationProvider>
-        <DarkModeToggle />
-        <Navbar />
-        <Header user={user} />
-        <Notification message={notificationMessage} />
+    <div className="app-container">
+      <Navbar />
+      <Header user={user} />
+      <Notification message={notificationMessage} />
 
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/" element={<Home showNotification={showNotification} />} />
-          <Route
-            path="/login"
-            element={user ? <Navigate to="/dashboard" /> : <Login />}
-          />
-          <Route
-            path="/register"
-            element={user ? <Navigate to="/dashboard" /> : <Register />}
-          />
+      <Routes>
+        {/* Public Routes */}
+        <Route path="/" element={<Home showNotification={showNotification} />} />
+        <Route
+          path="/login"
+          element={user ? <Navigate to="/dashboard" /> : <Login />}
+        />
+        <Route
+          path="/register"
+          element={user ? <Navigate to="/dashboard" /> : <Register />}
+        />
 
-          {/* Protected Routes */}
-          <Route
-            path="/dashboard"
-            element={user ? <Dashboard /> : <Navigate to="/login" />}
-          />
-          <Route
-            path="/admin-panel"
-            element={user?.role === 'admin' ? <AdminPanel /> : <Navigate to="/dashboard" />}
-          />
-          <Route path="/session/:sessionType" element={<SessionPage />} />
+        {/* Protected Routes */}
+        <Route
+          path="/dashboard"
+          element={user ? <Dashboard /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/admin-panel"
+          element={user?.role === 'admin' ? <AdminPanel /> : <Navigate to="/dashboard" />}
+        />
+        <Route path="/session/:sessionType" element={<SessionPage />} />
 
-          {/* Features / Tools */}
-          <Route path="/mood-survey" element={<MoodSurvey />} />
-          <Route path="/share-journey" element={<ShareJourney />} />
-          <Route path="/progress" element={
-            <ProgressChart
-              progressData={{
-                labels: ['Week 1', 'Week 2', 'Week 3'],
-                data: [10, 15, 20],
-              }}
-            />
-          } />
-          <Route path="/challenges" element={<MeditationChallenges />} />
-          <Route path="/testimonials" element={<TestimonialsSection />} />
-          <Route path="/features" element={<FeaturesSection />} />
-          <Route path="/benefits" element={<BenefitsSection />} />
-          <Route path="/daily-tip" element={<DailyTip />} />
-          <Route path="/mood-tracker" element={<MoodTracker />} />
-          <Route path="/reminder" element={<Reminder />} />
-          <Route path="/recommendation" element={<Recommendation />} />
-          <Route path="/meditation" element={<Meditation />} />
-        </Routes>
+        {/* Features */}
+        <Route path="/mood-survey" element={<MoodSurvey />} />
+        <Route path="/share-journey" element={<ShareJourney />} />
+        <Route path="/progress" element={
+          <ProgressChart
+            progressData={{
+              labels: ['Week 1', 'Week 2', 'Week 3'],
+              data: [10, 15, 20],
+            }}
+          />
+        } />
+        <Route path="/challenges" element={<MeditationChallenges />} />
+        <Route path="/testimonials" element={<TestimonialsSection />} />
+        <Route path="/features" element={<FeaturesSection />} />
+        <Route path="/benefits" element={<BenefitsSection />} />
+        <Route path="/daily-tip" element={<DailyTip />} />
+        <Route path="/mood-tracker" element={<MoodTracker />} />
+        <Route path="/reminder" element={<Reminder />} />
+        <Route path="/recommendation" element={<Recommendation />} />
+        <Route path="/meditation" element={<Meditation />} />
+      </Routes>
 
-        <Footer />
-      </MeditationProvider>
-    </DarkModeProvider>
+      <Footer />
+    </div>
   );
 }
 
