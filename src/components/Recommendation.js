@@ -1,45 +1,102 @@
-import axios from 'axios';
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { recommendationAPI } from '../services/api';
+import ChallengeList from './ChallengeList';
+import MoodSelector from './MoodSelector';
+import './Recommendation.css';
 
-function Recommendation({ mood }) {
-  const [recommendation, setRecommendation] = useState('');
-  const [loading, setLoading] = useState(false);
+const Recommendation = () => {
+  const [mood, setMood] = useState('');
+  const [recommendation, setRecommendation] = useState(null);
+  const [challenges, setChallenges] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const fetchRecommendation = async () => {
-    setLoading(true);
-    setError(''); // Reset previous errors
-    setRecommendation(''); // Reset recommendation
+  // Fetch active challenges on component mount
+  useEffect(() => {
+    const fetchChallenges = async () => {
+      try {
+        const data = await recommendationAPI.getActiveChallenges();
+        setChallenges(data.challenges);
+      } catch (err) {
+        setError('Failed to load challenges');
+      }
+    };
+    
+    fetchChallenges();
+  }, []);
 
-    console.log('Mood sent:', mood); // Log the mood value to check what is being sent
+  const handleMoodSubmit = async (selectedMood) => {
+    if (!selectedMood) return;
+    
+    setIsLoading(true);
+    setError('');
+    setMood(selectedMood);
 
     try {
-      // Make the API call to get the recommendation
-      const response = await axios.post('http://localhost:5000/api/recommendations/getRecommendation', { mood });
-      console.log('Recommendation received:', response.data.recommendation); // Log the response
-      setRecommendation(response.data.recommendation); // Set the recommendation
-    } catch (error) {
-      setError('Failed to fetch recommendation.');
-      console.error('Error fetching recommendation:', error);
+      const result = await recommendationAPI.getMoodRecommendation(selectedMood);
+      setRecommendation(result);
+    } catch (err) {
+      setError(err || 'Failed to get recommendation');
     } finally {
-      setLoading(false);
+      setIsLoading(false);
+    }
+  };
+
+  const handleJoinChallenge = async (challengeId) => {
+    try {
+      setIsLoading(true);
+      const result = await recommendationAPI.joinChallenge(challengeId);
+      setChallenges(prev => prev.map(c => 
+        c.id === challengeId ? { ...c, joined: true } : c
+      ));
+      // Show success message or update UI
+    } catch (err) {
+      setError(err || 'Failed to join challenge');
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="bg-white shadow-lg rounded-lg p-6">
-      <h2 className="text-xl font-semibold">Get Your Recommendation</h2>
-      <button
-        onClick={fetchRecommendation} // Trigger the fetchRecommendation function on button click
-        className="bg-blue-500 text-white px-4 py-2 mt-4 rounded-lg hover:bg-blue-600 transition-colors"
-        disabled={loading} // Disable the button while loading
-      >
-        {loading ? 'Loading...' : 'Get Recommendation'}
-      </button>
-      {recommendation && <p className="mt-4">{recommendation}</p>}
-      {error && <p className="text-red-500 mt-4">{error}</p>}
+    <div className="recommendation-container">
+      <div className="recommendation-card">
+        <h3 className="section-title">Personalized Recommendations</h3>
+        
+        <MoodSelector 
+          currentMood={mood}
+          onSubmit={handleMoodSubmit}
+          isLoading={isLoading}
+        />
+
+        {error && <div className="error-message">{error}</div>}
+
+        {recommendation && (
+          <div className="recommendation-result">
+            <h4>For your {mood} mood, we recommend:</h4>
+            <div className="recommendation-details">
+              <h5>{recommendation.title}</h5>
+              <p>{recommendation.description}</p>
+              <p className="duration">Duration: {recommendation.duration} minutes</p>
+              <button 
+                className="start-button"
+                onClick={() => {/* Start session logic */}}
+              >
+                Start Session
+              </button>
+            </div>
+          </div>
+        )}
+
+        <div className="challenges-section">
+          <h4>Current Challenges</h4>
+          <ChallengeList 
+            challenges={challenges}
+            onJoin={handleJoinChallenge}
+          />
+        </div>
+      </div>
     </div>
   );
-}
+};
 
 export default Recommendation;

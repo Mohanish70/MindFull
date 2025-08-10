@@ -1,0 +1,83 @@
+.challenge-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.challenge-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.challenge-card:hover {
+  transform: translateY(-2px);
+}
+
+.challenge-content {
+  flex: 1;
+}
+
+.challenge-title {
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+}
+
+.challenge-description {
+  color: #4a5568;
+  margin-bottom: 0.75rem;
+}
+
+.challenge-meta {
+  display: flex;
+  gap: 1rem;
+  color: #718096;
+  font-size: 0.875rem;
+}
+
+.join-button {
+  background: #48bb78;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  min-width: 120px;
+}
+
+.join-button:hover {
+  background: #38a169;
+}
+
+.join-button.joined {
+  background: #e2e8f0;
+  color: #4a5568;
+  cursor: default;
+}
+
+.no-challenges {
+  text-align: center;
+  color: #718096;
+  padding: 2rem;
+  background: #f8fafc;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .challenge-card {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .join-button {
+    align-self: flex-end;
+  }
+}

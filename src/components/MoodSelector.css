@@ -1,0 +1,63 @@
+.mood-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.mood-selector-title {
+  color: #2d3748;
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+.mood-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.mood-option {
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: transform 0.2s, opacity 0.2s;
+  color: white;
+  opacity: 0.8;
+}
+
+.mood-option:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.mood-option.selected {
+  opacity: 1;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button {
+  background: #4299e1;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 1rem;
+  align-self: center;
+  min-width: 200px;
+}
+
+.submit-button:hover {
+  background: #3182ce;
+}
+
+.submit-button:disabled {
+  background: #cbd5e0;
+  cursor: not-allowed;
+}

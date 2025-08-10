@@ -1,52 +1,112 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { authAPI } from '../services/api';
 import './LoginPage.css';
 
 const LoginPage = () => {
-  const { login } = useAuth();
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = async (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+    if (error) setError('');
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+    setError('');
 
     try {
-      await login(email, password);
-      navigate('/dashboard');
-    } catch (error) {
-      setErrorMessage('Invalid credentials!');
+      const response = await authAPI.login(formData);
+      if (response.success) {
+        navigate('/dashboard');
+      } else {
+        setError(response.message || 'Login failed');
+      }
+    } catch (err) {
+      setError(err.message || 'Login failed. Please try again.');
+    } finally {
+      setIsLoading(false);
     }
+  };
+
+  const handleForgotPassword = () => {
+    navigate('/forgotpassword');
   };
 
   return (
     <div className="login-container">
-      <div className="login-box">
-        <h2 className="login-title">Welcome Back!</h2>
+      <div className="login-card">
+        <h2 className="login-title">Welcome to MindWell</h2>
+        <p className="login-subtitle">Sign in to continue your mindfulness journey</p>
 
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        {error && <div className="error-message">{error}</div>}
 
-        <form onSubmit={handleLogin}>
-          <input
-            type="email"
-            placeholder="Email"
-            className="input-field"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            className="input-field"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button type="submit" className="login-btn">
-            Login
+        <form onSubmit={handleSubmit} className="login-form">
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="form-input"
+              placeholder="Enter your email"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+              className="form-input"
+              placeholder="Enter your password"
+            />
+          </div>
+
+          <button 
+            type="submit" 
+            className="login-button"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <span className="spinner"></span> Signing in...
+              </>
+            ) : (
+              'Sign In'
+            )}
           </button>
         </form>
+
+        <div className="login-footer">
+          <p>Don't have an account? <a href="/register">Sign up</a></p>
+          <p>
+            <button 
+              onClick={handleForgotPassword}
+              className="forgot-password-button"
+            >
+              Forgot password?
+            </button>
+          </p>
+        </div>
       </div>
     </div>
   );
